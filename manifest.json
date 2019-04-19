@@ -1,0 +1,17 @@
+{
+  "name": "Jnet Event Notifier",
+  "version": "1.0",
+  "description": "Send HTTP requests based on specific jinteki.net events.",
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "permissions": ["http://127.0.0.1:5000/receive"],
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["https://www.jinteki.net/play*"]
+    }
+  ],
+  "manifest_version": 2
+}
