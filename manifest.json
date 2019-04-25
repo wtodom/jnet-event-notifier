@@ -6,12 +6,14 @@
     "persistent": false,
     "scripts": ["background.js"]
   },
-  "permissions": ["http://127.0.0.1:5000/receive"],
+  "permissions": ["http://127.0.0.1:5000/receive", "storage"],
   "content_scripts": [
     {
       "js": ["content.js"],
       "matches": ["https://www.jinteki.net/play*"]
     }
   ],
+  "options_page": "options.html",
+  "icons": { "48": "siren-48.png", "64": "siren-64.png" },
   "manifest_version": 2
 }
