@@ -1434,12 +1434,17 @@ if (true) {
   })();
 }
 
+var players;
+
 var systemObserver = new MutationSummary({
   callback: handleSystemMessage,
   queries: [{ element: '.system' }]
 });
 
 function handleSystemMessage(messages) {
+  if (!players || players.length == 0) {
+    players = document.getElementsByClassName('ellipsis');
+  }
   var mesageList = messages[0].added;
   var now = new Date();
   var timestamp =
@@ -1452,9 +1457,13 @@ function handleSystemMessage(messages) {
     console.log('system @ ' + timestamp + ' >> ' + mesageList[i].innerText);
     var payload = {
       source: 'system',
+      player: players[1].innerText,
+      opponent: players[0].innerText,
       timestamp: timestamp,
       msg: mesageList[i].innerText
     };
+    console.log('Sending message:');
+    console.log(payload);
     chrome.runtime.sendMessage({ type: 'system', options: payload });
   }
 }
